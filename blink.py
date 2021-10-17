@@ -1,9 +1,15 @@
 import machine
 import utime
 
-led = machine.Pin(2, machine.Pin.OUT)
-while(1):
-    led.value(1)
-    utime.sleep(1)
-    led.value(0)
-    utime.sleep(1)
+led_pin = Pin(2, Pin.OUT)
+led = Signal(led_pin, invert=True)
+
+def blink_3_times():
+    led.off(1)
+    for i in range (3):
+        utime.sleep(1)
+        led.on()
+        utime.sleep(1)
+        led.off()
+
+        
