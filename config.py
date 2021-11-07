@@ -1,26 +1,27 @@
 import json
 
-def loadConfig():
-    global config
+def load_config():
+    global __config
     try:
         file = open('config.json')
-        config = json.load(file)
+        __config = json.load(file)
         file.close()
     except:
-        config = {'ssid': '', 'password': '', 'server': ''}
+        __config = {'ssid': '', 'password': '', 'server': ''}
+    return __config.copy()
 
-def saveConfig():
-    global config
+def save_config():
+    global __config
     file = open('config.json', 'w')
-    json.dump(config, file)
+    json.dump(__config, file)
     file.flush()
     file.close()
 
-def getConfig():
-    return config
+def get_config():
+    return __config.copy()
 
-def setConfig(c):
-    global config
-    config = c
+def set_config(c):
+    global __config
+    __config = c
 
-config = loadConfig()
+__config = load_config()
