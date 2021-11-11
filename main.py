@@ -1,14 +1,17 @@
 import blink
 import config
+import server
 
 // At startup led blink 3 times slowly
 blink_3_times()
-conf = config.get_config
-print('sid: ' + conf['ssid'] +'\n')
+conf = config.load()
+
+print('ssid: ' + conf['ssid'] +'\n')
+print('server: ' + conf['server'] +'\n')
 print('password: ' + conf['password'] +'\n')
-print('server: ' + conf['password'] +'\n')
 
 
-conf['ssid'] = '1234'
-
-config.set_config(conf)
+if conf['server'] == '':
+    server.add_route('OPTION', '.*', option)
+    server.add_route('GET', '/', index)
+    server.start()

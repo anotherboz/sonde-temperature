@@ -1,6 +1,6 @@
 import json
 
-def load_config():
+def load():
     global __config
     try:
         file = open('config.json')
@@ -10,17 +10,17 @@ def load_config():
         __config = {'ssid': '', 'password': '', 'server': ''}
     return __config.copy()
 
-def save_config():
+def save():
     global __config
     file = open('config.json', 'w')
     json.dump(__config, file)
     file.flush()
     file.close()
 
-def get_config():
+def get():
     return __config.copy()
 
-def set_config(c):
+def set(c):
     global __config
     __config = c
 

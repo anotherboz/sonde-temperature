@@ -1,48 +1,17 @@
 import network
-import json
 import re
+import config
 
-routes = []  // tuple of (method, path, func)
-
-def ok(body):
-     return '''
-HTTP/1.0 200 OK
-Content-Type: text/html
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Methods: *
-Content-Length: ''' + str(len(body)) + '''
-
-''' + body  
-
-def json(body):
-     return '''
-HTTP/1.0 200 OK
-Content-Type: application/json
-Content-Length: ''' + str(len(body)) + '''
-
-''' + json.dumps(body)  
-
-def error404(body):
-     print('tada3')
-     return '''
-HTTP/1.0 404 Not Found
-Content-Length: ''' + str(len(body)) + '''
-
-''' + body  
-
-def error500(body):
-     return '''
-HTTP/1.0 500 Internal Server Error
-Content-Length: ''' + str(len(body)) + '''
-
-''' + body  
-
-def start_server():
+def start():
      global routes
      ap_if = network.WLAN(network.AP_IF)
      ap_if.active(True)
      
-     ap_if.config(essid='THERMO')
+     config = config.get()
+     if config['ssid'] == '':
+          config['ssid'] = 'THERMO'
+          config.set(config)
+     ap_if.config(essid=config['ssid'])
      ap_if.ifconfig(('192.168.4.1', '255.255.255.0', '192.168.4.1', '8.8.8.8'))
      print(ap_if.ifconfig())
      import socket
@@ -101,14 +70,4 @@ def add_route(method, path, func):
 def remove_route(method, path):
      global routes
      routes = [ r for r in routes if r[0] != method or r[1] != path ]
-
-def index(body, headers):
-     return ok('Sonde temperature')
-
-def option(body, headers):
-     return ok('')
-
-add_route('GET', '/', index)
-add_route('OPTION', '.*', option)
-start_server()
 

@@ -16,7 +16,7 @@ print('found devices:', list(map(lambda a: binascii.hexlify(a[6:]), roms)))
 # loop 10 times and print all temperatures
 for i in range(10):
     print('temperatures:', end=' ')
-    ds.convert_temp()
+    ds.convert_temp() # takes around 250 ms
     time.sleep_ms(750)
     for rom in roms:
         print(binascii.hexlify(rom[6:]), ds.read_temp(rom), end=' ')
