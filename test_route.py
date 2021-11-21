@@ -6,6 +6,16 @@ class HTTPHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.wfile.write(route.index("","").encode("utf-8"))
+    def do_OPTIONS(self):
+        self.wfile.write(route.option("","").encode("utf-8"))
+    def do_POST(self):
+        content_length = self.headers["Content-Length"]
+        body = (
+            None
+            if content_length is None
+            else self.rfile.read(int(content_length)).decode()
+        )
+        self.wfile.write(route.post(body,self.headers).encode("utf-8"))
 
 
 if __name__ == '__main__':

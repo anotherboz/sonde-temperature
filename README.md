@@ -4,18 +4,12 @@
 
 Au démarrage, puis toutes les 30 minutes le micro-controleur intérroge les sondes de températeurs. Toutes les sondes sont interrogées en même temps.
 
-A chaque relevé, la température est sauvegardée en mémoire ainsi que les 480 dernières (10 jours de données). Si le module Wifi dispose d'une configuration en client, il se connecte à internet et envoie les températures au serveur. Sinon, les différentes mesures sont gardée en mémoire et consultable par WebService.
+A chaque relevé, la température est sauvegardée en mémoire ainsi que les 480 dernières (10 jours de données). Si le module Wifi dispose d'une configuration en client, il se connecte à internet et envoie les températures au serveur. Sinon, les différentes mesures sont gardée en mémoire et consultable en mode serveur.
 
 ## Le wifi
 
 Au démarrage le micro-controleur est en mode "serveur". Le module Wifi est actif pendant 10 minutes. Il se désactive automatiquement après 10 minutes. Pour le réactiver il faut appuyer sur le bouton.
 Après un appuie sur le bouton, le module redémarre automatiquement en mode "serveur".
-
-Quand il est en mode serveur le module répond aux webservices: 
- 
-  - GET /temperature
-  - GET /config
-  - POST /config
 
 ### GET /temperature
 

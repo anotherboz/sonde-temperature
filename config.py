@@ -24,4 +24,4 @@ def set(c):
     global __config
     __config = c
 
-__config = load_config()
+__config = load()

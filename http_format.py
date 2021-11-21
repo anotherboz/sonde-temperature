@@ -1,4 +1,4 @@
-import json
+import json as JSON
 
 routes = []  # tuple of (method, path, func)
 
@@ -17,11 +17,12 @@ def json(body):
 HTTP/1.0 200 OK
 Content-Type: application/json
 Content-Length: ''' + str(len(body)) + '''
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: *
 
-''' + json.dumps(body)  
+''' + JSON.dumps(body)  
 
 def error404(body):
-     print('tada3')
      return '''
 HTTP/1.0 404 Not Found
 Content-Length: ''' + str(len(body)) + '''
@@ -31,6 +32,13 @@ Content-Length: ''' + str(len(body)) + '''
 def error500(body):
      return '''
 HTTP/1.0 500 Internal Server Error
+Content-Length: ''' + str(len(body)) + '''
+
+''' + body  
+
+def error(code, body):
+     return '''
+HTTP/1.0 ''' + code + '''
 Content-Length: ''' + str(len(body)) + '''
 
 ''' + body  
