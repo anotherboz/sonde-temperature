@@ -2,7 +2,7 @@ import re
 import http_format as http
 import config;
 
-def index(body, headers, success):
+def index(body, headers, success=""):
     conf = config.get()
     success_result = ""
     if success == True:

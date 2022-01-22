@@ -1,4 +1,4 @@
-#! /usr/bin/env -S python3 -m unittest test_config.py
+#! /usr/bin/env -S python3 test_config.py
 import unittest
 import os
 import config

@@ -1,6 +1,6 @@
 # Sonde de température
 
-## Les mesures
+## Les mesures
 
 Au démarrage, puis toutes les 30 minutes le micro-controleur intérroge les sondes de températeurs. Toutes les sondes sont interrogées en même temps.
 
