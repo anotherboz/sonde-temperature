@@ -15,7 +15,7 @@ async def async_main():
     t2 = uasyncio.create_task(blah_thread())
     await uasyncio.sleep_ms(8000)
     heartbeat.set_mode(heartbeat.temp_mode)
-    await uasyncio.sleep_ms(8000)
+    await uasyncio.sleep_ms(8000)e
     heartbeat.set_mode(heartbeat.server_mode)
     await uasyncio.sleep_ms(4000)
     heartbeat.set_mode(heartbeat.wait_mode)

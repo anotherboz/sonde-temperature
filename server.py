@@ -2,8 +2,11 @@ import network
 import re
 import config
 
+runnign = False
+
 def start():
      global routes
+     global running
      ap_if = network.WLAN(network.AP_IF)
      ap_if.active(True)
      
